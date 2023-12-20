@@ -46,10 +46,10 @@ delay = sampling_rate * (sequence_length + 24 - 1)
 batch_size = 256 
   
 train_dataset = keras.utils.timeseries_dataset_from_array(
-    data = raw_data[:-delay],
-    targets=temperature[delay:],
+    data = raw_data[:-delay], # training data
+    targets=temperature[delay:], # target data
     sampling_rate=sampling_rate,
-    sequence_length=sequence_length,
+    sequence_length=sequence_length, # training data length
     shuffle=True,
     batch_size=batch_size,
     start_index=0,
@@ -77,3 +77,4 @@ test_dataset = keras.utils.timeseries_dataset_from_array(
 
 for inputs, targets in test_dataset:
     print(inputs, " : ", targets, "\n")
+    print(inputs.shape, " - ", targets.shape)
